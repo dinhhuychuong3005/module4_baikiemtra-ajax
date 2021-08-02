@@ -14,13 +14,13 @@ com/codegym/model/Product.java
  com.codegym.model.Product
 com/codegym/service/category/ICategoryService.java
  com.codegym.service.category.ICategoryService
-com/codegym/controller/ProductController.java
- com.codegym.controller.ProductController
+com/codegym/service/product/IProductService.java
+ com.codegym.service.product.IProductService
 com/codegym/repository/IProductRepository.java
  com.codegym.repository.IProductRepository
 com/codegym/controller/CategoryController.java
  com.codegym.controller.CategoryController
 com/codegym/service/product/ProductService.java
  com.codegym.service.product.ProductService
-com/codegym/service/product/IProductService.java
- com.codegym.service.product.IProductService
+com/codegym/controller/ProductController.java
+ com.codegym.controller.ProductController

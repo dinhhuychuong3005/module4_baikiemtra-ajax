@@ -8,9 +8,11 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IProductRepository extends PagingAndSortingRepository<Product,Long> {
+public interface IProductRepository extends PagingAndSortingRepository<Product, Long> {
     Iterable<Product> findProductByName(String name);
 
-@Query("select c from Product c where c.name like ?1")
+    Page<Product> findAll(Pageable pageable);
+    @Query("select c from Product c where c.name like ?1")
+
     Iterable<Product> findAllByNameContaining(String name);
 }

@@ -4,6 +4,10 @@ import com.codegym.model.Product;
 import com.codegym.service.category.ICategoryService;
 import com.codegym.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -57,7 +61,7 @@ public class ProductController {
 
     @GetMapping("/search/{value}")
     public ResponseEntity<Iterable<Product>> findByName(@PathVariable String value) {
-        return new ResponseEntity<>(productService.findAllByNameContaining("%" + value + "%"  ), HttpStatus.OK);
+        return new ResponseEntity<>(productService.findAllByNameContaining("%" + value + "%"), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
@@ -68,5 +72,11 @@ public class ProductController {
         }
         productService.remove(id);
         return new ResponseEntity<>(product.get(), HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<Product>> findAll(@PageableDefault(size = 3, direction = Sort.Direction.DESC, sort = "id") Pageable pageable) {
+        Page<Product> products = productService.findAll(pageable);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 }
